@@ -1,7 +1,7 @@
 package com.amagana.librairie_modulith.catalog.web.controllers;
 
-import com.amagana.librairie_modulith.catalog.domain.Book;
-import com.amagana.librairie_modulith.catalog.domain.BookService;
+import com.amagana.librairie_modulith.catalog.Book;
+import com.amagana.librairie_modulith.catalog.BookService;
 import com.amagana.librairie_modulith.common.PageResult;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/books")
+@RequestMapping("/api/v1/books")
 class BookController {
 
     private final BookService bookService;
@@ -27,8 +27,8 @@ class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(bookService.createBook(book));
     }
 
-    @GetMapping
-    public ResponseEntity<Book> findBookByIsbn(@RequestParam(name = "isbn") String isbn) {
+    @GetMapping("/{isbn}")
+    public ResponseEntity<Book> findBookByIsbn(@PathVariable(name = "isbn") String isbn) {
         return ResponseEntity.status(HttpStatus.OK).body(bookService.getBookByIsbn(isbn));
     }
 }

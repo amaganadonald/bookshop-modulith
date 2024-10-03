@@ -1,14 +1,16 @@
 package com.amagana.librairie_modulith.catalog.domain;
 
-import com.amagana.librairie_modulith.common.PageResult;
+import com.amagana.librairie_modulith.catalog.Book;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-interface BookRepository extends JpaRepository<BookEntity, Long> {
+public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     Optional<Book> findByIsbn(String isbn);
 
-    PageResult<Book> findAllBy(Pageable pageable);
+    //@Query("SELECT b FROM BookEntity b")
+    Page<Book> findAllBy(Pageable pageable);
 }
