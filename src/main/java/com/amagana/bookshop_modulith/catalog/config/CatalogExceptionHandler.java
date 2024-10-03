@@ -13,13 +13,11 @@ import java.time.Instant;
 @RestControllerAdvice
 class CatalogExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private static final String TIMESTAMP = "timestamp";
-
     @ExceptionHandler(BookNotFoundException.class)
      ResponseEntity<ProblemDetail> handleBookNotFoundException(BookNotFoundException bookNotFoundException) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
         problemDetail.setTitle("Book Not Found");
-        problemDetail.setProperty(TIMESTAMP, Instant.now());
+        problemDetail.setProperty("timestamp", Instant.now());
         problemDetail.setDetail(bookNotFoundException.getMessage());
         return new ResponseEntity<>(problemDetail, HttpStatus.NOT_FOUND);
     }
