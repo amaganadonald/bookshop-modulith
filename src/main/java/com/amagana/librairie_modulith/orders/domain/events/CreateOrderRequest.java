@@ -1,4 +1,7 @@
 package com.amagana.librairie_modulith.orders.domain.events;
 
-public record CreateOrderRequest() {
+
+import java.util.List;
+
+public record CreateOrderRequest(List<OrderDto> orderDto, Long CustomerId) {
 }

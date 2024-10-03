@@ -26,13 +26,12 @@ class BookEntity {
     @Column(unique = true, nullable = false)
     @NotEmpty(message = "Book ISBN is required")
     @NotNull(message = "Book ISBN must not be null")
-    @Embedded
-    private Isbn isbn;
+    private String isbn;
     private LocalDate publishDate;
     private String language;
     private String description;
-    @Column(unique = false, columnDefinition = "int default 1")
     private int numberOfPages;
+    private double price;
 
 
 }

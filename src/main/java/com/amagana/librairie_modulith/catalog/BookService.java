@@ -1,9 +1,6 @@
-package com.amagana.librairie_modulith.catalog.domain;
+package com.amagana.librairie_modulith.catalog;
 
 import com.amagana.librairie_modulith.common.PageResult;
-import org.springframework.data.domain.Page;
-
-import java.util.Optional;
 
 public interface BookService {
 

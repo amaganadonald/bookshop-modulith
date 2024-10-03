@@ -1,16 +1,19 @@
 package com.amagana.librairie_modulith.catalog.domain;
 
+import com.amagana.librairie_modulith.catalog.Book;
 import com.amagana.librairie_modulith.catalog.BookNotFoundException;
+import com.amagana.librairie_modulith.catalog.BookService;
 import com.amagana.librairie_modulith.common.PageResult;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
 @AllArgsConstructor
-class BookServiceImpl implements BookService{
+class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
     @Override
@@ -22,7 +25,8 @@ class BookServiceImpl implements BookService{
 
     @Override
     public PageResult<Book> getBooks(int page, int size) {
-        return bookRepository.findAllBy(PageRequest.of(page, size));
+        Page<Book> books = bookRepository.findAllBy(PageRequest.of(page, size));
+        return new PageResult<>(books);
     }
 
     @Override
